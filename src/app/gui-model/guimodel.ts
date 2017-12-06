@@ -9,7 +9,7 @@ export class GuiModel {
 
     private _guiModel = {
         "application": {
-            "title": "Requirements Engineering Friend Tracker",
+            "title": "Nuran Super Tracker",
             "formList": [
                 {
                     "id": "FriendForm",
@@ -29,6 +29,14 @@ export class GuiModel {
                             "width": 1,
                             "required": true
                         },
+						{
+							"id": "nickname",
+							"type": "text",
+							"name": "NicknameNuran",
+							"with": 2,
+							"required" : true
+						},
+						
                         {
                             "id":   "location",
                             "type": "autocomplete",
@@ -37,6 +45,15 @@ export class GuiModel {
                             "form": "GroupForm",
                             "width": 2
                         },
+						{
+						"id": "group",
+						"type": "autocomplete",
+						"name": "Group",
+						"data": ["Study", "Family", "School"],
+						"form": "GroupForm",
+						"width":2
+						},
+						
                         {
                             "id": "evtBirth",
                             "type": "date",
@@ -89,7 +106,60 @@ export class GuiModel {
                             "name": "Ok"
                         }
                     ]
-                }
+                },
+				{
+				
+                    "id": "ActivityForm",
+                    "title": "Activity",
+                    "formFieldList": [
+                        {
+                            "id": "name",
+                            "type": "text",
+                            "name": "Activity",
+                            "width": 2,
+                            "required": true
+                        },
+                        {
+                            "type": "deleteButton",
+                            "name": "Delete"
+                        },
+                        {
+                            "type": "cancelButton",
+                            "name": "Cancel"
+                        },
+                        {
+                            "type": "okButton",
+                            "name": "Ok"
+                        }
+                    ]
+                },
+				{
+				"id": "GroupForm",
+				"title": "Group",
+				"formFieldList":[
+				{
+				"id": "name",
+				"type": "text",
+				"name": "GroupName",
+				"width": 2,
+				"required":"true"
+				},
+				{
+				"type": "deleteButton",
+				"name": "Delete",
+				},
+				{
+				"type": "cancelButton",
+				"name": "Cancel",
+				},
+				{
+				"type": "okButton",
+				"name": "Ok",
+				}
+			]
+		}
+				
+				
             ],
             "pageList": [
                 {
@@ -100,16 +170,30 @@ export class GuiModel {
                             "type": "button",
                             "name": "Friends",
                             "icon": "fa-user",
-                            "color": "blue",
+                            "color": "red",
                             "page": "friendspage",
                         },
                         {
                             "type": "button",
                             "name": "Location",
                             "icon": "fa-cubes",
-                            "color": "yellow",
+                            "color": "pumpkin",
                             "page": "locationspage",
                         },
+						{
+							"type": "button",
+							"name": "Groups",
+							"icon": " fa-camera-retro",
+							"color": "yellow",
+							"page": "groupspage",
+						},
+{
+							"type": "button",
+							"name": "Activity",
+							"icon": "fa-bathtub",
+							"color": "lime",
+							"page": "activitypage",
+						},						
                     ]
                 },
                 {
@@ -133,6 +217,87 @@ export class GuiModel {
                             "color": "blue",
                             "search": true,
                             "data": [ { name: "Anton Amacker" }, { name: "Britta Beavers"} ],
+                            "page": "friendpage",
+                        },
+                    ]
+                },
+				
+                {
+                    "id": "friendpage",
+                    "elementList": [
+                        {
+                            "type": "backbutton",
+                        },
+                        {
+                            "type": "button",
+                            "name": "EditFriend",
+                            "icon": "fa-user",
+                            "color": "green",
+                            "form": {
+                                "form": "FriendForm"
+                            }
+                        },
+						{
+                            "type": "button",
+                            "name": "AddActivity",
+                            "icon": "fa-user",
+                            "color": "green",
+                            "form": {
+                                "form": "ActivityForm"
+                            }
+                        },
+                        {
+                            "type": "list",
+                            "icon": "fa-user",
+                            "color": "blue",
+                            "search": true,
+                            "data": [ { name: "Kino" }, { name: "Konzert"} ],
+                            "form": {
+                                "form": "FriendForm"
+                            }
+                        },
+                    ]
+                },
+				{
+                    "id": "activitypage",
+                    "elementList": [
+                        {
+                            "type": "backbutton",
+                        },
+                        {
+                            "type": "button",
+                            "name": "EditActivity",
+                            "icon": "fa-motorcycle",
+                            "color": "green",
+                            "form": {
+                                "form": "FriendForm"
+                            }
+                        },
+						{
+                            "type": "button",
+                            "name": "AddActivity",
+                            "icon": "fa-mixcloud",
+                            "color": "red",
+                            "form": {
+                                "form": "ActivityForm"
+                            }
+                        },
+						{
+						
+                            "type": "button",
+                            "name": "AddLocation",
+                            "icon": "fa-map-pin",
+                            "color": "purple",
+                            "form": {
+                                "form": "ActivityForm"
+                            }
+                        },
+                        {
+                            "type": "list",
+                            "icon": "fa-user",
+                            "color": "blue",
+                            "search": true,
+                            "data": [ { name: "Kino" }, { name: "Konzert"} ],
                             "form": {
                                 "form": "FriendForm"
                             }
@@ -165,7 +330,47 @@ export class GuiModel {
                             }
                         },
                     ]
-                }
+                },
+				{
+							"id": "groupspage",
+							"elementList": [
+							{
+								"type": "backbutton",
+							},
+							{
+								"type": "newButton",
+								"name": "NewGroup",
+								"icon": "fa-weixin",
+								"color": "red",
+								"form":{
+									"form": "GroupForm"
+								}
+								
+							},
+                        {
+                            "type": "list",
+                            "icon": "fa-home",
+                            "color": "blue",
+                            "search": true,
+                            "data": [ { name: "Adelboden" }, { name: "Winterthur" }, { name: "Zinal"}, { name: "Zürich"} ],
+                            "form": {
+                                "form": "GroupForm"
+                            }
+                        },
+						{
+						"type":"list",
+						"icon": "fa-weixin",
+						"color": "wisteria",
+						"search": true,
+						"data": [{name: "Study"}, {name: "Family"}, {name: "School"}],
+						"form": {
+							"form":"GroupForm"
+							}
+						},
+						
+						]
+						
+						}
             ]
         }
     };
